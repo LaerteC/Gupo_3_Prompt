@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "TJRJ Jurisprudência — Data Pipeline & Medallion DAG",
+    "output": "docs/pipeline_dag.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "full-lineage",
+        "label": "Linhagem Completa",
+        "focus": ["hf_csv", "delta_decisoes", "bronze_decisoes", "silver_decisoes", "gold_decisoes", "consultas_sql"],
+        "note": "Fluxo principal de processamento das decisões judiciais desde o CSV bruto até os relatórios analíticos."
+      },
+      {
+        "id": "depara-track",
+        "label": "Trilha De-Para de Câmaras",
+        "focus": ["depara_json", "delta_camaras", "bronze_camaras", "silver_camaras", "silver_decisoes"],
+        "note": "Trilha de enriquecimento e mapeamento estrutural das antigas Câmaras Cíveis para Direito Público e Privado."
+      },
+      {
+        "id": "quarantine-isolation",
+        "label": "Isolamento de Quarentena",
+        "focus": ["silver_decisoes", "silver_quarentena"],
+        "note": "Registros com datas inválidas, classes vazias ou câmara fora do de-para são retidos com motivo registrado."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "hf_csv",
+      "type": "external",
+      "label": "Hugging Face",
+      "sublabel": "jurisprudencias_tjrj",
+      "pos": [40, 170],
+      "size": [110, 56],
+      "tag": "61k CSV"
+    },
+    {
+      "id": "depara_json",
+      "type": "external",
+      "label": "De-Para JSON",
+      "sublabel": "Reforma Câmaras",
+      "pos": [40, 390],
+      "size": [110, 56],
+      "tag": "JSON"
+    },
+    {
+      "id": "delta_decisoes",
+      "type": "database",
+      "label": "Delta Decisões",
+      "sublabel": "data/delta/decisoes",
+      "pos": [230, 170],
+      "size": [120, 56],
+      "tag": "Time Travel"
+    },
+    {
+      "id": "delta_camaras",
+      "type": "database",
+      "label": "Delta Câmaras",
+      "sublabel": "data/delta/camaras",
+      "pos": [230, 390],
+      "size": [120, 56],
+      "tag": "32 Câmaras"
+    },
+    {
+      "id": "bronze_decisoes",
+      "type": "backend",
+      "label": "bronze_decisoes",
+      "sublabel": "Cópia 1:1 Raw",
+      "pos": [430, 170],
+      "size": [120, 56],
+      "tag": "DuckDB"
+    },
+    {
+      "id": "bronze_camaras",
+      "type": "backend",
+      "label": "bronze_camaras",
+      "sublabel": "Cópia 1:1 Raw",
+      "pos": [430, 390],
+      "size": [120, 56],
+      "tag": "DuckDB"
+    },
+    {
+      "id": "silver_decisoes",
+      "type": "backend",
+      "label": "silver_decisoes",
+      "sublabel": "Limpa e Tipada",
+      "pos": [630, 170],
+      "size": [120, 56],
+      "tag": "61.024 válidas"
+    },
+    {
+      "id": "silver_quarentena",
+      "type": "security",
+      "label": "Quarentena",
+      "sublabel": "Rejeitados",
+      "pos": [630, 280],
+      "size": [120, 56],
+      "tag": "306 linhas"
+    },
+    {
+      "id": "silver_camaras",
+      "type": "backend",
+      "label": "silver_camaras",
+      "sublabel": "De-Para Tratado",
+      "pos": [630, 390],
+      "size": [120, 56],
+      "tag": "Dimensão"
+    },
+    {
+      "id": "gold_decisoes",
+      "type": "database",
+      "label": "gold_decisoes",
+      "sublabel": "1 Decisão/Linha",
+      "pos": [830, 170],
+      "size": [120, 56],
+      "tag": "Tabela Larga"
+    },
+    {
+      "id": "consultas_sql",
+      "type": "frontend",
+      "label": "Consultas SQL",
+      "sublabel": "pct_monocratica",
+      "pos": [1030, 170],
+      "size": [120, 56],
+      "tag": "Dashboard"
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Delta Lake Storage",
+      "wraps": ["delta_decisoes", "delta_camaras"]
+    },
+    {
+      "kind": "security-group",
+      "label": "DuckDB Warehouse & dbt",
+      "wraps": ["bronze_decisoes", "bronze_camaras", "silver_decisoes", "silver_quarentena", "silver_camaras", "gold_decisoes"]
+    }
+  ],
+  "connections": [
+    {
+      "id": "c-hf-delta",
+      "from": "hf_csv",
+      "to": "delta_decisoes",
+      "label": "Download",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-depara-delta",
+      "from": "depara_json",
+      "to": "delta_camaras",
+      "label": "De-para",
+      "variant": "default"
+    },
+    {
+      "id": "c-delta-bronze-d",
+      "from": "delta_decisoes",
+      "to": "bronze_decisoes",
+      "label": "raw carga",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-delta-bronze-c",
+      "from": "delta_camaras",
+      "to": "bronze_camaras",
+      "label": "raw carga",
+      "variant": "default"
+    },
+    {
+      "id": "c-bronze-silver-d",
+      "from": "bronze_decisoes",
+      "to": "silver_decisoes",
+      "label": "dbt build",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-bronze-silver-c",
+      "from": "bronze_camaras",
+      "to": "silver_camaras",
+      "label": "dbt build",
+      "variant": "default"
+    },
+    {
+      "id": "c-silver-cam-join",
+      "from": "silver_camaras",
+      "to": "silver_decisoes",
+      "label": "Join de-para",
+      "variant": "default",
+      "fromSide": "right",
+      "toSide": "right",
+      "via": [[785, 418], [785, 198]],
+      "labelAt": [805, 308]
+    },
+    {
+      "id": "c-silver-quarentena",
+      "from": "silver_decisoes",
+      "to": "silver_quarentena",
+      "label": "Desvio",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [718, 240]
+    },
+    {
+      "id": "c-silver-gold",
+      "from": "silver_decisoes",
+      "to": "gold_decisoes",
+      "label": "Validadas",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c-gold-consultas",
+      "from": "gold_decisoes",
+      "to": "consultas_sql",
+      "label": "Métricas",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Arquitetura Medallion + Delta Lake",
+      "items": [
+        "Preservação do dado bruto no Delta Lake com suporte nativo a Time Travel (versões 0 e 1)",
+        "DuckDB carregado estritamente a partir do Delta Lake, garantindo idempotência e reprodutibilidade",
+        "Camadas Bronze, Silver e Gold orquestradas pelo dbt com 18 testes automatizados"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Quarentena & Qualidade de Dados",
+      "items": [
+        "Tratamento de defeitos reais (datas /Date(...)/ UTC->Brasília, acentos, câmaras cortadas)",
+        "Desvio de 306 registros com falhas para quarentena (sem descarte silencioso)",
+        "Mapeamento seguro da sucessão da antiga 12ª Câmara Cível para a 7ª de Direito Privado"
+      ]
+    },
+    {
+      "dot": "orange",
+      "title": "Consumo & Resposta de Negócio",
+      "items": [
+        "Modelo Gold em grão atômico (1 linha por decisão válida) para flexibilidade de recortes",
+        "Cálculo de métrica derivada pct_monocratica (média de flag_monocratica * 100)",
+        "Direito Público lidera com 26.9% de decisões monocráticas vs 10.1% no Direito Privado"
+      ]
+    }
+  ]
+}
