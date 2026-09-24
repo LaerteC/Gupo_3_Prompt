@@ -1,0 +1,13 @@
+version: 2
+
+# Tabelas que o pipeline Python criou no schema "raw" (vindas do Delta Lake).
+# Declarar aqui faz elas aparecerem no começo da DAG (linhagem).
+sources:
+  - name: raw
+    schema: raw
+    description: "Bruto carregado a partir do Delta Lake (data/delta). Tudo texto, com defeitos."
+    tables:
+      - name: decisoes
+        description: "Fonte 1 (CSV): decisões do TJRJ, Hugging Face celsowm/jurisprudencias_tjrj"
+      - name: camaras
+        description: "Fonte 2 (JSON): de-para da reestruturação das câmaras (antiga câmara cível -> câmara nova)"

@@ -1,0 +1,14 @@
+# ambiente virtual (cada um cria o seu)
+venv/
+.venv/
+# o banco é RECONSTRUÍDO pelo pipeline + dbt build, não vai para o Git
+warehouse/
+# arquivos gerados pelo dbt
+target/
+dbt_packages/
+logs/
+# lixo do Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+# IMPORTANTE: data/raw e data/delta NÃO estão aqui: eles VÃO para o Git
+.user.yml

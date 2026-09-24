@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: silver_camaras
+    description: "De-para das câmaras: câmara atual, área e o nome da câmara cível antiga"
+    columns:
+      - name: camara
+        data_tests:
+          - not_null                  # teste 1
+          - unique                    # teste 2
+      - name: area
+        data_tests:
+          - accepted_values:          # teste 3
+              arguments:
+                values: ['PUBLICO', 'PRIVADO']
+      - name: antiga_numero
+        data_tests:
+          - unique                    # teste 4 (cada câmara antiga virou UMA câmara nova)
+
+  - name: silver_decisoes_tratadas
+    description: "Decisões únicas, limpas e tipadas, com motivo_invalido (se houver)"
+
+  - name: silver_decisoes
+    description: "Decisões válidas: limpas, tipadas e sem duplicados"
+    columns:
+      - name: id_documento
+        data_tests:
+          - not_null                  # teste 5
+          - unique                    # teste 6 (prova que o defeito I3 foi tratado)
+      - name: data_movimento
+        data_tests:
+          - not_null                  # teste 7 (prova que R2 e I2 foram tratados)
+      - name: tipo_decisao
+        data_tests:
+          - accepted_values:          # teste 8
+              arguments:
+                values: ['ACORDAO', 'MONOCRATICA']
+      - name: area
+        data_tests:
+          - accepted_values:          # teste 9
+              arguments:
+                values: ['PUBLICO', 'PRIVADO', 'CRIMINAL', 'OUTROS']
+      - name: grupo_classe
+        data_tests:
+          - accepted_values:          # teste 10 (prova que R1 e I1 foram tratados)
+              arguments:
+                values: ['APELACAO', 'AGRAVO DE INSTRUMENTO', 'OUTROS AGRAVOS', 'REMESSA NECESSARIA', 'OUTRAS CLASSES']
+      - name: orgao_julgador
+        data_tests:
+          - relationships:            # teste 11: toda câmara de Direito Público/Privado existe no de-para
+              arguments:
+                to: ref('silver_camaras')
+                field: camara
+              config:
+                where: "orgao_julgador like '%CAMARA DE DIREITO%'"
+
+  - name: silver_decisoes_quarentena
+    description: "Decisões rejeitadas, guardadas com o motivo"
+    columns:
+      - name: motivo_invalido
+        data_tests:
+          - not_null                  # teste 12

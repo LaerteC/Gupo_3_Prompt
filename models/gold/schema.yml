@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: gold_decisoes
+    description: "CAMADA DE CONSUMO. Grão: 1 linha = 1 decisão válida do TJRJ. Responde: quem mais decide monocraticamente, por área, câmara, classe e mês?"
+    columns:
+      - name: id_documento
+        data_tests:
+          - not_null                  # teste 13
+          - unique                    # teste 14
+      - name: area
+        data_tests:
+          - not_null                  # teste 15
+      - name: mes
+        data_tests:
+          - not_null                  # teste 16
+      - name: flag_monocratica
+        data_tests:
+          - accepted_values:          # teste 17
+              arguments:
+                values: [0, 1]
+                quote: false
+# teste 18 = tests/assert_nenhuma_camara_civel_antiga_sem_depara.sql (teste singular)

@@ -1,0 +1,23 @@
+# "Ficha" do projeto dbt: nome, onde estão os arquivos e em qual camada (schema) cada pasta vai morar
+name: projeto_dados
+version: "1.0.0"
+config-version: 2
+profile: projeto_dados
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  projeto_dados:
+    bronze:
+      +schema: bronze
+      +materialized: table
+    silver:
+      +schema: silver
+      +materialized: table
+    gold:
+      +schema: gold
+      +materialized: table

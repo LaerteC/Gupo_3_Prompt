@@ -1,0 +1,199 @@
+{
+  "descricao": "De-para da reestruturação das câmaras cíveis do TJRJ em câmaras de Direito Público e Privado. Montado pela equipe a partir dos nomes oficiais que aparecem no próprio dataset, no formato '... (ANTIGA Nª CÂMARA CÍVEL)'. Câmaras novas sem câmara antiga equivalente têm antiga_camara_civel = null.",
+  "fonte": "equipe (planilha de referência)",
+  "atualizado_em": "2026-09-22",
+  "camaras": [
+    {
+      "camara_atual": "DECIMA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 1,
+      "nome_antigo": "PRIMEIRA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "NONA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 2,
+      "nome_antigo": "SEGUNDA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "SEGUNDA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 3,
+      "nome_antigo": "TERCEIRA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "DECIMA SEXTA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 4,
+      "nome_antigo": "QUARTA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "QUARTA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 5,
+      "nome_antigo": "QUINTA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "TERCEIRA CAMARA DE DIREITO PUBLICO",
+      "area": "PUBLICO",
+      "antiga_camara_civel": 6,
+      "nome_antigo": "SEXTA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "QUARTA CAMARA DE DIREITO PUBLICO",
+      "area": "PUBLICO",
+      "antiga_camara_civel": 7,
+      "nome_antigo": "SÉTIMA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "PRIMEIRA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 8,
+      "nome_antigo": "OITAVA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "DECIMA QUARTA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 9,
+      "nome_antigo": "NONA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "SEGUNDA CAMARA DE DIREITO PUBLICO",
+      "area": "PUBLICO",
+      "antiga_camara_civel": 10,
+      "nome_antigo": "DÉCIMA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "VIGESIMA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 11,
+      "nome_antigo": "DÉCIMA PRIMEIRA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "SETIMA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 12,
+      "nome_antigo": "DÉCIMA SEGUNDA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "SEXTA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 13,
+      "nome_antigo": "DÉCIMA TERCEIRA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "DECIMA SEGUNDA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 14,
+      "nome_antigo": "DÉCIMA QUARTA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "DECIMA OITAVA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 15,
+      "nome_antigo": "DÉCIMA QUINTA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "QUINTA CAMARA DE DIREITO PUBLICO",
+      "area": "PUBLICO",
+      "antiga_camara_civel": 16,
+      "nome_antigo": "DÉCIMA SEXTA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "OITAVA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 17,
+      "nome_antigo": "DÉCIMA SÉTIMA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "TERCEIRA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 18,
+      "nome_antigo": "DÉCIMA OITAVA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "VIGESIMA PRIMEIRA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 19,
+      "nome_antigo": "DÉCIMA NONA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "DECIMA QUINTA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 20,
+      "nome_antigo": "VIGÉSIMA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "SEXTA CAMARA DE DIREITO PUBLICO",
+      "area": "PUBLICO",
+      "antiga_camara_civel": 21,
+      "nome_antigo": "VIGÉSIMA PRIMEIRA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "DECIMA TERCEIRA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 22,
+      "nome_antigo": "VIGÉSIMA SEGUNDA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "VIGESIMA SEGUNDA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 23,
+      "nome_antigo": "VIGÉSIMA TERCEIRA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "QUINTA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 24,
+      "nome_antigo": "VIGÉSIMA QUARTA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "DECIMA NONA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 25,
+      "nome_antigo": "VIGÉSIMA QUINTA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "DECIMA SETIMA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 26,
+      "nome_antigo": "VIGÉSIMA SEXTA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "DECIMA PRIMEIRA CAMARA DE DIREITO PRIVADO",
+      "area": "PRIVADO",
+      "antiga_camara_civel": 27,
+      "nome_antigo": "VIGÉSIMA SÉTIMA CÂMARA CÍVEL"
+    },
+    {
+      "camara_atual": "PRIMEIRA CAMARA DE DIREITO PUBLICO",
+      "area": "PUBLICO",
+      "antiga_camara_civel": null,
+      "nome_antigo": null
+    },
+    {
+      "camara_atual": "SÉTIMA CÂMARA DE DIREITO PÚBLICO",
+      "area": "PUBLICO",
+      "antiga_camara_civel": null,
+      "nome_antigo": null
+    },
+    {
+      "camara_atual": "OITAVA CAMARA DE DIREITO PUBLICO",
+      "area": "PUBLICO",
+      "antiga_camara_civel": null,
+      "nome_antigo": null
+    },
+    {
+      "camara_atual": "NONA CAMARA DE DIREITO PUBLICO",
+      "area": "PUBLICO",
+      "antiga_camara_civel": null,
+      "nome_antigo": null
+    },
+    {
+      "camara_atual": "DECIMA CAMARA DE DIREITO PUBLICO",
+      "area": "PUBLICO",
+      "antiga_camara_civel": null,
+      "nome_antigo": null
+    }
+  ]
+}

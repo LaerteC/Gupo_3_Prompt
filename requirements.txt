@@ -1,0 +1,8 @@
+# Bibliotecas do projeto (versões testadas). Instale com:  pip install -r requirements.txt
+pandas==3.0.2
+pyarrow==25.0.1
+deltalake==1.6.5
+duckdb==1.5.5
+dbt-core==1.12.5
+dbt-duckdb==1.11.0
+datasets==5.0.1

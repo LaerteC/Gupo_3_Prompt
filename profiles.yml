@@ -1,0 +1,8 @@
+# "Endereço" do banco. DuckDB = um banco que é só um arquivo: sem instalação, sem senha.
+projeto_dados:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: warehouse/projeto.duckdb
+      threads: 1
