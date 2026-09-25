@@ -52,6 +52,7 @@ python -m src.consulta      # a resposta
 | `python -m src.consulta consultas/resposta_por_camara.sql` | ângulo 1: por câmara |
 | `python -m src.consulta consultas/resposta_por_classe.sql` | ângulo 2: por tipo de recurso |
 | `python -m src.consulta consultas/resposta_por_mes.sql` | ângulo 3: por mês |
+| `python -m src.dashboard` | abre o dashboard executivo HTML no navegador |
 | `dbt docs generate` e `dbt docs serve` | linhagem (DAG) em http://localhost:8080 |
 
 ## Estrutura
